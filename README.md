@@ -10,13 +10,21 @@ LAN clients → Pi-hole :53 → dnscrypt-proxy :5053 (DNSCrypt) → Quad9
 
 Requires [Docker Desktop](https://www.docker.com/products/docker-desktop/).
 
+**macOS / Linux**
 ```bash
 git clone <repo>
 cd pihole
 ./setup.sh
 ```
 
-The first run creates `.env` from `.env.example` and exits. Fill it in, then run `./setup.sh` again to start the stack.
+**Windows** (PowerShell, Docker Desktop with WSL2 backend)
+```powershell
+git clone <repo>
+cd pihole
+.\setup.ps1
+```
+
+The first run creates `.env` from `.env.example`, auto-detects this machine's LAN IP and subnet, and exits. Set your admin password in `.env`, then run the script again to start the stack.
 
 ### .env
 
