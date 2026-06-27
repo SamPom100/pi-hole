@@ -31,14 +31,10 @@ if (-not (Test-Path .env)) {
 
     $localIP = Get-LocalIP
     if ($localIP) {
-        $parts  = $localIP -split '\.'
-        $subnet = "$($parts[0]).$($parts[1]).$($parts[2]).0/24"
-
         (Get-Content .env) -replace 'SERVER_IP=.*',              "SERVER_IP=$localIP"    | Set-Content .env
-        (Get-Content .env) -replace 'FTLCONF_webserver_acl=.*',  "FTLCONF_webserver_acl=+127.0.0.1,+[::1],+$subnet,+172.30.0.0/24" | Set-Content .env
 
         Write-Host ""
-        Write-Host "Detected LAN IP: $localIP  (subnet $subnet)"
+        Write-Host "Detected LAN IP: $localIP"
     }
 
     Write-Host ""

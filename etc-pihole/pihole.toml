@@ -1,7 +1,7 @@
 # Pi-hole configuration file (v6.4.1)
 # Encoding: UTF-8
 # This file is managed by pihole-FTL
-# Last updated on 2026-06-27 16:42:30 EDT
+# Last updated on 2026-06-27 16:49:39 EDT
 
 [dns]
   # Upstream DNS Servers to be used by Pi-hole. If this is not set, Pi-hole will not
@@ -849,7 +849,7 @@
   #
   # Allowed values are:
   #     A valid ACL
-  acl = "+127.0.0.1,+[::1],+192.168.50.0/24" ### CHANGED (env), default = ""
+  acl = "+127.0.0.1,+[::1],+192.168.50.0/24,+172.30.0.0/24" ### CHANGED (env), default = ""
 
   # Ports to be used by the webserver.
   #
@@ -889,7 +889,7 @@
   #
   # Allowed values are:
   #     A comma-separated list of <[ip_address:]port>
-  port = "80r,443s,[::]:80r,[::]:443s" ### CHANGED, default = "80o,443os,[::]:80o,[::]:443os"
+  port = "80,443s,[::]:80,[::]:443s" ### CHANGED (env), default = "80o,443os,[::]:80o,[::]:443os"
 
   # Maximum number of worker threads allowed.
   #
@@ -1673,7 +1673,8 @@
 # Configuration statistics:
 # 162 total entries out of which 154 entries are default
 # --> 8 entries are modified
-# 3 entries are forced through environment:
+# 4 entries are forced through environment:
 #   - dns.reply.host.force4
 #   - dns.reply.host.IPv4
 #   - webserver.acl
+#   - webserver.port
