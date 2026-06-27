@@ -1,0 +1,60 @@
+services:
+  dnscrypt-proxy:
+    container_name: dnscrypt-proxy
+    image: klutchell/dnscrypt-proxy:latest
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - ./dnscrypt-proxy:/config
+    healthcheck:
+      test: ["CMD", "/usr/local/bin/dnsprobe", "google.com", "127.0.0.1:5053"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+    networks:
+      dns_net:
+        ipv4_address: 172.30.0.2
+
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    restart: unless-stopped
+    depends_on:
+      dnscrypt-proxy:
+        condition: service_healthy
+    security_opt:
+      - no-new-privileges:true
+    networks:
+      dns_net:
+        ipv4_address: 172.30.0.3
+
+    env_file: .env
+    environment:
+      ServerIP: "${SERVER_IP}"
+      TZ: "America/New_York"
+
+    ports:
+      - "80:80"
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "443:443"
+
+    volumes:
+      - ./etc-pihole:/etc/pihole
+      - ./etc-dnsmasq.d:/etc/dnsmasq.d
+
+    dns:
+      - 127.0.0.1
+      - 9.9.9.9
+
+    cap_add:
+      - NET_ADMIN
+
+networks:
+  dns_net:
+    ipam:
+      config:
+        - subnet: 172.30.0.0/24
+

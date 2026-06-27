@@ -1,0 +1,39 @@
+# Secrets — never commit
+.env
+
+# Pi-hole runtime databases
+etc-pihole/*.db
+etc-pihole/*.db-shm
+etc-pihole/*.db-wal
+etc-pihole/gravity_old.db
+
+# Pi-hole TLS keys/certs (auto-generated on first run)
+etc-pihole/tls.pem
+etc-pihole/tls.crt
+etc-pihole/tls_ca.crt
+
+# Pi-hole runtime state
+etc-pihole/cli_pw
+etc-pihole/dhcp.leases
+etc-pihole/dnsmasq.conf
+etc-pihole/logrotate
+etc-pihole/versions
+
+# Pi-hole auto-generated directories
+etc-pihole/listsCache/
+etc-pihole/gravity_backups/
+etc-pihole/config_backups/
+etc-pihole/migration_backup/
+
+# dnsmasq runtime config (auto-generated)
+etc-dnsmasq.d/
+
+# dnscrypt-proxy resolver list (downloaded at runtime)
+dnscrypt-proxy/public-resolvers.md
+dnscrypt-proxy/public-resolvers.md.minisig
+
+# macOS
+.DS_Store
+launch.log
+
+website.txt
