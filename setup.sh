@@ -36,7 +36,7 @@ if [[ ! -f .env ]]; then
   if [[ -n "$LOCAL_IP" ]]; then
     SUBNET=$(echo "$LOCAL_IP" | awk -F. '{print $1"."$2"."$3".0/24"}')
     sed -i.bak "s|SERVER_IP=.*|SERVER_IP=${LOCAL_IP}|" .env
-    sed -i.bak "s|FTLCONF_webserver_acl=.*|FTLCONF_webserver_acl=+127.0.0.1,+[::1],+${SUBNET}|" .env
+    sed -i.bak "s|FTLCONF_webserver_acl=.*|FTLCONF_webserver_acl=+127.0.0.1,+[::1],+${SUBNET},+172.30.0.0/24|" .env
     rm -f .env.bak
     echo ""
     echo "Detected LAN IP: ${LOCAL_IP} (subnet ${SUBNET})"

@@ -1,15 +1,13 @@
-listen_addresses = ['0.0.0.0:5053']
+listen_addresses = ['172.30.0.2:5053']
 
-# Only use Quad9 (no-log, non-profit, Switzerland)
-server_names = ['quad9-dnscrypt-ip4-filter-pri', 'quad9-dnscrypt-ip4-filter-alt']
+# Only use Quad9 (no-log, non-profit, filtered)
+# quad9-dnscrypt-ip4-filter-pri covers 3 anycast IPs (9.9.9.9 / 149.112.112.9 / 149.112.112.112)
+server_names = ['quad9-dnscrypt-ip4-filter-pri']
 
 # Disable ECS - do not forward client subnet to resolvers
 block_ipv6 = false
 block_unqualified = true
 block_undelegated = true
-
-[anonymized_dns]
-  skip_incompatible = true
 
 [sources]
   [sources.public-resolvers]

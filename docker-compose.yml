@@ -8,7 +8,7 @@ services:
     volumes:
       - ./dnscrypt-proxy:/config
     healthcheck:
-      test: ["CMD", "/usr/local/bin/dnsprobe", "google.com", "127.0.0.1:5053"]
+      test: ["CMD", "/usr/local/bin/dnsprobe", "google.com", "172.30.0.2:5053"]
       interval: 30s
       timeout: 5s
       retries: 3
@@ -34,12 +34,14 @@ services:
     environment:
       ServerIP: "${SERVER_IP}"
       TZ: "America/New_York"
+      FTLCONF_dns_reply_host_force4: "true"
+      FTLCONF_dns_reply_host_IPv4: "${SERVER_IP}"
 
     ports:
-      - "80:80"
+      - "${SERVER_IP:-0.0.0.0}:80:80"
       - "${SERVER_IP:-0.0.0.0}:53:53/tcp"
       - "${SERVER_IP:-0.0.0.0}:53:53/udp"
-      - "443:443"
+      - "${SERVER_IP:-0.0.0.0}:443:443"
 
     volumes:
       - ./etc-pihole:/etc/pihole

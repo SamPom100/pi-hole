@@ -1,7 +1,7 @@
 # Pi-hole configuration file (v6.4.1)
 # Encoding: UTF-8
 # This file is managed by pihole-FTL
-# Last updated on 2026-05-12 20:24:20 EDT
+# Last updated on 2026-06-27 16:42:30 EDT
 
 [dns]
   # Upstream DNS Servers to be used by Pi-hole. If this is not set, Pi-hole will not
@@ -205,7 +205,7 @@
   #       configuration file. This is useful if you want to manually configure the
   #       listening mode in auxiliary configuration files. This option is really meant
   #       for advanced users only, support for this option may be limited.
-  listeningMode = "LOCAL" ### CHANGED, default = "LOCAL"
+  listeningMode = "LOCAL"
 
   # Log DNS queries and replies to pihole.log
   #
@@ -441,13 +441,13 @@
       #
       # Allowed values are:
       #     true or false
-      force4 = false
+      force4 = true ### CHANGED (env), default = false
 
       # Custom IPv4 address for the Pi-hole host
       #
       # Allowed values are:
       #     A valid IPv4 address or empty string ("")
-      IPv4 = ""
+      IPv4 = "192.168.50.254" ### CHANGED (env), default = ""
 
       # Use a specific IPv6 address for the Pi-hole host? See description for the IPv4
       # variant above for further details.
@@ -849,7 +849,7 @@
   #
   # Allowed values are:
   #     A valid ACL
-  acl = "+127.0.0.1,+[::1],+192.168.50.0/24" ### CHANGED, default = ""
+  acl = "+127.0.0.1,+[::1],+192.168.50.0/24" ### CHANGED (env), default = ""
 
   # Ports to be used by the webserver.
   #
@@ -1671,7 +1671,9 @@
   all = false
 
 # Configuration statistics:
-# 162 total entries out of which 155 entries are default
-# --> 7 entries are modified
-# 1 entry is forced through environment:
-#   - dns.listeningMode
+# 162 total entries out of which 154 entries are default
+# --> 8 entries are modified
+# 3 entries are forced through environment:
+#   - dns.reply.host.force4
+#   - dns.reply.host.IPv4
+#   - webserver.acl
