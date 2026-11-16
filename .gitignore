@@ -37,3 +37,7 @@ dnscrypt-proxy/public-resolvers.md.minisig
 launch.log
 
 website.txt
+
+# Caddy runtime data
+caddy_data/
+caddy_config/

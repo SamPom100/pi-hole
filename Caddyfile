@@ -1,0 +1,29 @@
+{
+    admin off
+}
+
+# Comics (Comic Viewer)
+http://comics, http://comics.home, http://comics.lan, http://comics.local {
+    reverse_proxy host.docker.internal:3000
+}
+
+# Photos (Immich)
+http://photos, http://photos.home, http://photos.lan, http://photos.local, http://immich, http://immich.home, http://immich.lan, http://immich.local {
+    reverse_proxy host.docker.internal:2283
+}
+
+# Anime (ani-ui)
+http://anime, http://anime.home, http://anime.lan, http://anime.local {
+    reverse_proxy host.docker.internal:5050
+}
+
+# Pi-hole Web Admin
+http://pi, http://pi.home, http://pi.lan, http://pi.local, http://pi.hole {
+    reverse_proxy host.docker.internal:8080 {
+        header_up Host pi.hole
+    }
+}
+
+:80 {
+    respond "Available services: http://comics.home | http://photos.home | http://anime.home | http://pi.home" 200
+}

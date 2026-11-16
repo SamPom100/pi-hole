@@ -36,12 +36,13 @@ services:
       TZ: "America/New_York"
       FTLCONF_dns_reply_host_force4: "true"
       FTLCONF_dns_reply_host_IPv4: "${SERVER_IP}"
+      FTLCONF_dns_listeningMode: "ALL"
 
     ports:
-      - "80:80"
+      - "8080:80"
       - "53:53/tcp"
       - "53:53/udp"
-      - "443:443"
+      - "8443:443"
 
     volumes:
       - ./etc-pihole:/etc/pihole
@@ -54,9 +55,24 @@ services:
     cap_add:
       - NET_ADMIN
 
+  caddy:
+    container_name: caddy
+    image: caddy:alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - ./caddy_data:/data
+      - ./caddy_config:/config
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      dns_net:
+        ipv4_address: 172.30.0.4
+
 networks:
   dns_net:
     ipam:
       config:
         - subnet: 172.30.0.0/24
-
