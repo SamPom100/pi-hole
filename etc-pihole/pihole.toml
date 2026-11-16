@@ -131,7 +131,7 @@
   # Allowed values are:
   #     Array of custom DNS records each one in HOSTS form: "IP HOSTNAME [HOSTNAME ...]"
   hosts = [
-    "192.168.50.254 comics comics.home comics.lan pi pi.home pi.lan photos photos.home photos.lan immich immich.home immich.lan anime anime.home anime.lan"
+    "192.168.50.254 comics comics.local comics.home comics.lan pi pi.local pi.home pi.lan photos photos.local photos.home photos.lan anime anime.local anime.home anime.lan"
   ] ### CHANGED, default = []
 
   # If set, queries for plain names, without dots or domain parts, are never forwarded to

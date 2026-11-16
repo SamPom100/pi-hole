@@ -17,12 +17,12 @@
 #                       WITHIN /etc/dnsmasq.d/yourname.conf                      #
 #    (make sure misc.etc_dnsmasq_d is set to true in /etc/pihole/pihole.toml)    #
 #                                                                                #
-#                      Last updated: 2026-11-16 00:17:54 EST                     #
+#                      Last updated: 2026-11-16 00:46:21 EST                     #
 #                               by FTL version v6.7                              #
 #                                                                                #
 ##################################################################################
 
-192.168.50.254 comics comics.home comics.lan pi pi.home pi.lan photos photos.home photos.lan immich immich.home immich.lan anime anime.home anime.lan
+192.168.50.254 comics comics.local comics.home comics.lan pi pi.local pi.home pi.lan photos photos.local photos.home photos.lan anime anime.local anime.home anime.lan
 
 
 # There is 1 entry in this file
